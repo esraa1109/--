@@ -34,7 +34,9 @@ if uploaded_file is not None:
     # محاولة قراءة الاسم باستخدام OCR
     reader = easyocr.Reader(['en', 'ar'])
     result = reader.readtext(np.array(image))
-    extracted_name = " ".join([res[1] for res in result]).strip()
+lines = [res[1] for res in result]
+for line in lines:
+    st.text(f"🔍 مقطع من النص: {line}")
     st.info(f"الاسم المستخرج باستخدام OCR: {extracted_name}")
 
     # البحث في قاعدة البيانات
